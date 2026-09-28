@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Budget</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="travel">
+
+<div class="shell">
+
+  <aside class="sidebar">
+    <div class="brand">Travel<br>Budget</div>
+    <nav class="nav">
+      <a class="pill" href="/weather" target="_blank" rel="noopener">Weather App ↗</a>
+      <a class="pill" href="/advisor" target="_blank" rel="noopener">Savings Advisor ↗</a>
+      <a class="pill" href="/planner" target="_blank" rel="noopener">Finance Planner ↗</a>
+    </nav>
+  </aside>
+
+  <main class="stage">
+    <section id="screen-travel" class="screen active">
+      <h1 class="page-title title-travel">Travel Budget</h1>
+      <div class="card">
+        <div class="card-body" id="travel-body"></div>
+        <form class="search-bar" id="travel-search">
+          <input type="text" placeholder="Type your answer…" />
+          <button type="submit" class="search-btn" aria-label="Send">
+            <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="15.3" y1="15.3" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="travel.js"></script>
+</body>
+</html>

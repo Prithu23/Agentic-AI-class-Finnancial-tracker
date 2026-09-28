@@ -1,0 +1,306 @@
+:root {
+  --radius-card: 28px;
+  --radius-pill: 999px;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  transition: background-color .45s ease;
+}
+
+/* ---------- Theme tokens ---------- */
+body[data-theme="home"] {
+  --bg: #111111;
+  --card: #ece2c4;
+  --ink: #171512;
+  --title: #efe6cf;
+}
+body[data-theme="weather"] {
+  --bg: #57d9d9;
+  --card: #0b4aa8;
+  --ink: #e8f0ff;
+  --title: #0b4aa8;
+}
+body[data-theme="finance"] {
+  --bg: #c1512f;
+  --card: #dfa93e;
+  --ink: #3a2410;
+  --title: #dfa93e;
+}
+body[data-theme="travel"] {
+  --bg: #2f6b4f;
+  --card: #d7e8c8;
+  --ink: #1c3324;
+  --title: #d7e8c8;
+}
+body[data-theme="planner"] {
+  --bg: #4a3b6b;
+  --card: #e4d9f7;
+  --ink: #2a1f42;
+  --title: #e4d9f7;
+}
+
+body { background: var(--bg); }
+
+/* ---------- Shell layout ---------- */
+.shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.brand {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--bg);
+  background: var(--card);
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 14px;
+  transition: background-color .45s ease, color .45s ease;
+}
+body[data-theme="home"] .brand { color: var(--card); background: transparent; border: 1px solid var(--card); }
+
+.nav { display: flex; flex-direction: column; gap: 12px; }
+
+.pill {
+  display: inline-block;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  text-align: left;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  background: var(--card);
+  color: var(--ink);
+  transition: background-color .45s ease, color .45s ease, transform .15s ease;
+}
+
+.pill:hover { transform: translateX(2px); }
+
+.pill.active { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--card); }
+
+/* ---------- Stage & screens ---------- */
+.stage {
+  flex: 1;
+  position: relative;
+  padding: 48px 64px 48px 8px;
+}
+
+.screen {
+  position: absolute;
+  inset: 48px 64px 48px 8px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.screen.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.page-title {
+  margin: 0 0 20px;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--title);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.title-home { font-family: 'Space Grotesk', sans-serif; }
+.title-weather { font-family: 'Fredoka', sans-serif; }
+.title-finance { font-family: 'Zilla Slab', serif; }
+.title-travel { font-family: 'Space Grotesk', sans-serif; }
+.title-planner { font-family: 'Zilla Slab', serif; }
+
+/* ---------- Card ---------- */
+.card {
+  flex: 1;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  transition: background-color .45s ease;
+}
+
+.card-body {
+  flex: 1;
+  overflow-y: auto;
+  color: var(--ink);
+  padding-right: 4px;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink);
+  opacity: 0.85;
+  max-width: 46ch;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.suggestion {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.82rem;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  opacity: 0.75;
+  cursor: pointer;
+}
+.suggestion:hover { opacity: 1; }
+
+/* ---------- Search bar ---------- */
+.search-bar {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 6px 6px 6px 20px;
+  opacity: 0.9;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  outline: none;
+}
+.search-bar input::placeholder { color: var(--ink); opacity: 0.55; }
+
+.search-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #111111;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.search-btn:hover { background: #000000; }
+
+/* ---------- Weather results ---------- */
+.weather-summary { font-size: 0.95rem; line-height: 1.55; margin: 0 0 16px; }
+.weather-figures { display: flex; gap: 22px; margin-bottom: 18px; flex-wrap: wrap; }
+.weather-figure { display: flex; flex-direction: column; }
+.weather-figure .value { font-size: 1.4rem; font-weight: 700; }
+.weather-figure .label { font-size: 0.72rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.04em; }
+
+.activity-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.activity-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.35);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.activity-chip .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.activity-chip.suitable .dot { background: #1f8a4c; }
+.activity-chip.unsuitable .dot { background: #a3432f; }
+.activity-chip .reasons { display: block; font-size: 0.72rem; opacity: 0.7; font-weight: 400; }
+
+/* ---------- Chat (Finance App) ---------- */
+.chat-msg {
+  max-width: 78%;
+  padding: 10px 15px;
+  border-radius: 14px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+.chat-msg.assistant { background: rgba(255,255,255,0.4); }
+.chat-msg.user { background: #111111; color: #fff; margin-left: auto; }
+
+.plan-block {
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0,0,0,0.15);
+}
+.plan-figure { font-size: 1.6rem; font-weight: 700; margin: 0 0 6px; }
+.plan-summary { font-size: 0.9rem; line-height: 1.5; margin: 0; }
+
+/* ---------- Strategy cards (Finance Planner) ---------- */
+.strategy-card {
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  background: rgba(255,255,255,0.35);
+}
+.strategy-card.recommended {
+  background: rgba(255,255,255,0.65);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+.strategy-card.pruned { opacity: 0.55; }
+.strategy-name { font-weight: 700; font-size: 1rem; margin: 0 0 4px; display: flex; align-items: center; gap: 8px; }
+.strategy-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  background: #111111;
+  color: #fff;
+}
+.strategy-badge.muted { background: rgba(0,0,0,0.3); }
+.strategy-rationale { font-size: 0.85rem; line-height: 1.5; margin: 0 0 10px; opacity: 0.9; }
+.strategy-figures { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 8px; }
+.strategy-figures .weather-figure .value { font-size: 1.1rem; }
+.strategy-fit { font-size: 0.8rem; line-height: 1.5; opacity: 0.75; margin: 0; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .shell { flex-direction: column; }
+  .sidebar { width: auto; flex-direction: row; align-items: center; padding: 20px; gap: 16px; }
+  .nav { flex-direction: row; }
+  .stage { padding: 24px; }
+  .screen { inset: 24px; }
+  .page-title { font-size: 1.9rem; }
+}

@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.claude/
+
+# Stale duplicate archives from earlier iterations of this project — the
+# actual source is tracked directly, these were just backup zips.
+files.zip
+savings-advisor.zip
